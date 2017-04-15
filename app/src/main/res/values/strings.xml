@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Kotlin Example</string>
+    <string name="add_item">Добавить товар</string>
+    <string name="added">Добавлен</string>
+    <string name="cancelled">Отменено</string>
+    <string name="cancel">отменить</string>
+    <string name="start_activity">Переход  на другой экран</string>
+    <string name="another_screen">Другой экран</string>
+</resources>
