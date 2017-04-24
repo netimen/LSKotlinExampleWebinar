@@ -1,24 +1,26 @@
 package com.loftschool.kotlinexample;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 // https://antonioleiva.com/kotlin-awesome-tricks-for-android/
 public class MainActivity extends AppCompatActivity {
 
-    private View container;
+    private LinearLayout container;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        container = findViewById(R.id.container);
+        container = (LinearLayout) findViewById(R.id.container);
 
         findViewById(R.id.add_item).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,22 +34,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final Intent intent = new Intent(MainActivity.this, AnotherActivity.class);
                 intent.putExtra(AnotherActivity.PARAM_NAME, "Some name");
-                intent.putExtra(AnotherActivity.PARAM_PRICE, "15");
+                intent.putExtra(AnotherActivity.PARAM_PRICE, 15);
                 startActivity(intent);
             }
         });
-    }
-
-    private void onAddItemClicked() {
-        addItem(new Item("item", 0));
-        Snackbar.make(container, R.string.added, Snackbar.LENGTH_LONG)
-                .setAction(R.string.cancel, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(MainActivity.this, R.string.cancelled, Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .show();
     }
 
     @Override
@@ -67,7 +57,24 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private void onAddItemClicked() {
+        addItem(new Item("item", 0));
+        Snackbar.make(container, R.string.added, Snackbar.LENGTH_LONG)
+                .setAction(R.string.cancel, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(MainActivity.this, R.string.cancelled, Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setActionTextColor(Color.YELLOW)
+                .show();
+    }
+
     /// Items
+
+    void addItem(Item item) {
+        // adding item...
+    }
 
     static class Item {
         String name;
@@ -77,10 +84,6 @@ public class MainActivity extends AppCompatActivity {
             this.name = name;
             this.price = price;
         }
-    }
-
-    void addItem(Item item) {
-        // adding item...
     }
 
 }
