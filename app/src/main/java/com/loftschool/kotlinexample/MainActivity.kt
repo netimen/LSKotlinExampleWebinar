@@ -22,6 +22,7 @@ import org.jetbrains.anko.toast
  * Date:   24.04.17
  */
 
+// https://antonioleiva.com/kotlin-awesome-tricks-for-android/
 class MainActivityK : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
